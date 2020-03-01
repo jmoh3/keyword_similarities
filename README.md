@@ -1,6 +1,6 @@
 # Getting similarities between keywords
 
-This is a repo for getting a similarity metric between pairs of keywords, specifically to be used for the  (ACM Meeting-To-Member Matcher)[https://github.com/acm-uiuc/mmm] that uses resume information to give better event reccomendations to members.
+This is a repo for getting a similarity metric between pairs of keywords, specifically to be used for the  [ACM Meeting-To-Member Matcher](https://github.com/acm-uiuc/mmm) that uses resume information to give better event reccomendations to members.
 
 ## Our approach
 
@@ -24,10 +24,18 @@ We are assuming that:
 P(user likes an event of topic x | user has word y in skills list) ~ P(seen word x in document | seen word y in document)
 ```
 
-So, how do we calculate `P(seen word x in document | seen word y in document)`?
+So, how do we calculate `P(seen word x in document | seen word y in document)`? We're not doing anything too complicated.
 
 ```
 P(seen word x in document | seen word y in document) = # of times x and y occur in the same document / # of documents containing y
 ```
 
-The documents we used are wikipedia articles.
+The documents we used are Wikipedia articles.
+
+## To use
+
+First, install `requirements.txt`.
+
+If you want to use different keywords, modify `keywords.txt`. Then run `python get_wiki_articles.py`, which will attempt to get one wikipedia article for each keyword.
+
+Once you have your articles, then run `python get_similarity_matrix.py`, which will save the similarity weights to a csv where the value at row x and column y is the probability of seeing word x in a document given that the document contains word y.

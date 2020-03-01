@@ -29,7 +29,10 @@ for i in range(len(keywords)):
 
 for i in range(len(num_occurrences)):
     for j in range(len(num_occurrences)):
-        co_occurrences[i][j] /= num_occurrences[j]
+        if num_occurrences[j] != 0:
+            co_occurrences[i][j] /= num_occurrences[j]
+        else:
+            co_occurrences[i][j] = 0.5
 
 csv_header = ','.join(keywords)
 
